@@ -1,35 +1,37 @@
 import React from 'react'
-import { LinksContainerStyled, NavBarContainerStyled, LinksStyled, ToDoLinkStyled } from './NavBarStyled'
-import { Link, useNavigate } from 'react-router-dom'
+import { LinksContainerStyled, NavBarContainerStyled, LinksStyled } from './NavBarStyled'
+import { Link } from 'react-router-dom'
 import logo from "../../assets/home/logo.png"
-import { useThemeContext } from "../../context/ContextData"
+import { useSelector } from "react-redux"
 
 
 const NavBar = () => {
-    const { todoList } = useThemeContext() || {};
-    const navigate = useNavigate();
-    const toDoLinkClass = todoList && todoList.length > 0 ? 'to-do-link-active' : '';
-  
-    return (
-      <NavBarContainerStyled>
-        <Link to='/'>
-          <img src={logo} alt='Logo' />
-        </Link>
-        <LinksContainerStyled>
-          <div>
-            <Link to='/'>Home</Link>
-          </div>
-          <div>
-            <ToDoLinkStyled to='/ToDo' className={toDoLinkClass}>
-                To Do List {!!todoList && !!todoList.length && '*' }
-            </ToDoLinkStyled>
-          </div>
-          <div>
-            <Link to='/PokeApi'>PokeApi</Link>
-          </div>
-        </LinksContainerStyled>
-      </NavBarContainerStyled>
-    );
-  };
-  
-  export default NavBar;
+  const todoList = useSelector(state => state.todo.todoList);
+
+  return (
+    <NavBarContainerStyled>
+      <Link to='/' activeClassName="active-link">
+        <img src={logo} />
+      </Link>
+      <LinksContainerStyled>
+        <div>
+          <Link exact to='/' activeClassName="active-link">
+            Home
+          </Link>
+        </div>
+        <div>
+          <Link to='/ToDo' item={todoList.length}>
+            ToDo
+          </Link>
+        </div>
+        <div>
+          <Link to='/PokeApi' activeClassName="active-link">
+            PokeApi
+          </Link>
+        </div>
+      </LinksContainerStyled>
+    </NavBarContainerStyled>
+  )
+}
+
+export default NavBar

@@ -5,13 +5,9 @@ import Routes from "./routes/Routes"
 function App() {
   return (
     <>
-    <NavBar />
-    <Routes />
-
-
-
+      <Routes />
     </>
-    );
+  );
 }
 
 export default App;
