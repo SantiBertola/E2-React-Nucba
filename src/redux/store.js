@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import todoReducer from "./todoSlice"
+import todoReducer from "./pokemonSlice/pokemonSlice"
 import  pokemonReducer  from "./pokemonSlice/pokemonSlice"
-import storage from 'redux-persist/lib/storage';
+import storage from "redux-persist/lib/storage"
 import persistReducer from "redux-persist/es/persistReducer"
 import persistStore from "redux-persist/es/persistStore"
 

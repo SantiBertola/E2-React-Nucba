@@ -21,13 +21,18 @@ const ToDo = () => {
   const handleNewTodoSubmit = (e) => {
     e.preventDefault();
     if (newToDo.trim()) {
-      dispatch([...todoList, newToDo]);
+      const newTodo = {
+        id: Math.random(),
+        text: newToDo,
+        completed: false
+      };
+
+      dispatch(addItems({ task: newToDo }))
       setNewToDo('');
     } else {
       window.alert('Por favor, ingrese una tarea antes de agregarla.');
     }
   };
-
 
   const handleToDoDelete = e => {
     e.preventDefault();
